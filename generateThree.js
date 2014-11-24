@@ -14,7 +14,6 @@ var dataRollxArray = [];
 var dataRollyArray = [];
 var dataRollzArray = [];
 var accuracy = 2;
-var serverIP;
 var orderOfMag = (Math.PI/180);
 var container;
 var camera, scene, renderer;
@@ -25,9 +24,11 @@ var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 
 //Connect to socket.io
-socket = io.connect(serverIP + ':5000');
+var serverIP = "localhost";
+var socket = io.connect(serverIP + ':5000');
 console.log('socket connected to: ' + serverIP);
 
+// Start reading IMU data
 runSocket();
 init();
 animate();
@@ -48,10 +49,6 @@ function runSocket() {
                 dataRollz = (dataArray[3] *= orderOfMag).toFixed(accuracy);
 
                 console.log(dataRollx + "," + dataRolly + "," + dataRollz);
-                $("#subHeading").replaceWith("<div id='subHeading'>" + data + "</div>");
-
-                $("#subHeading").append("<div>" + whiskey + " unlocks: 1 - " + unlocked1 + " 2 - " + unlocked2 + "</div>");
-                */
             }
         });
 }

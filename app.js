@@ -40,38 +40,21 @@ function handler (req, res) {
     
     // Managing the root route
     if (path == '/') {
-        index = fs.readFile(__dirname+'/public/index.html', 
+        index = fs.readFile(__dirname+'/three.html', 
             function(error,data) {
                 
                 if (error) {
                     res.writeHead(500);
-                    return res.end("Error: unable to load index.html");
+                    return res.end("Error: unable to load three.html");
                 }
                 
                 res.writeHead(200,{'Content-Type': 'text/html'});
                 res.end(data);
             });
 
-    // Send localIP to server
-    } else if (path == '/getIP') {
-            res.end(localIP);
-    
-    // Managing the root for threejs
-    } else if (path == '/threejs') {
-        index = fs.readFile(__dirname+'/public/threejs/three.html', 
-            function(error,data) {
-                
-                if (error) {
-                    res.writeHead(500);
-                    return res.end("Error: unable to load threejs.html - " + error);
-                }
-                
-                res.writeHead(200,{'Content-Type': 'text/html'});
-                res.end(data);
-            });
     // Managing the route for the javascript files
     } else if( /\.(js)$/.test(path) ) {
-        index = fs.readFile(__dirname+'/public'+path, 
+        index = fs.readFile(__dirname+path, 
             function(error,data) {
                 
                 if (error) {
