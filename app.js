@@ -5,7 +5,7 @@ var os = require('os');
 var io = require('socket.io').listen(app);
 var serialport = require("serialport");
 var SP = serialport.SerialPort;
-var serialPort = new SP("/dev/ttyUSB0",
+var serialPort = new SP("COM4",
 	{
 		baudrate: 115200,
 		parser: serialport.parsers.readline("\n")
